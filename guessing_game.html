@@ -1,0 +1,54 @@
+/* It's not really a guessing game but a slot machine game that uses user prompt and the Math.random function*/
+
+<script>
+var UserInput, num1, num2, num3, message, result;
+
+UserInput = prompt("Do you have a coin? (y/n)");
+
+/*these numbers (integers from 0 to 2) are inputs for the SlotMachine function that compares them*/
+
+  
+  num1 = Math.floor(Math.random()*10/5);
+  console.log(num1);
+  num2 = Math.floor(Math.random()*10/5);
+  console.log(num2);
+  num3 = Math.floor(Math.random()*10/5);
+  console.log(num3);
+
+
+function SlotMachine(num1, num2, num3)
+{
+  if(num1 == num2 && num2 == num3){
+      return true;
+    }
+    else{
+      return false;
+    }
+}
+
+result = SlotMachine(num1, num2, num3);
+
+if(UserInput == "y"){
+  while(result != true){
+    message = "You lost! Want to try again?";
+    alert(message + " " + num1 + num2 + num3);
+    num1 = Math.floor(Math.random()*10/5);
+    console.log(num1);
+    num2 = Math.floor(Math.random()*10/5);
+    console.log(num2);
+    num3 = Math.floor(Math.random()*10/5);
+    console.log(num3);
+    result = SlotMachine(num1, num2, num3);
+  }
+
+  if (result == true){
+    message = "Congratulations, you won a million smurf dollars!";
+    alert(message + " " + num1 + num2 + num3);
+  }
+} 
+
+if(UserInput == "n"){
+  message = "Alright, maybe some other time!";
+}
+
+</script>
