@@ -2,13 +2,7 @@
 
 <script>
 
-function SlotMachine()
-{
-  var num1, num2, num3;
-  num1 = Math.floor(Math.random()*10/5);
-  num2 = Math.floor(Math.random()*10/5);
-  num3 = Math.floor(Math.random()*10/5);
-  
+function SlotMachine(num1, num2, num3){
   if(num1 == num2 && num2 == num3){
     return true;
   }
@@ -17,6 +11,16 @@ function SlotMachine()
   }
 }
 
+function MakeRandomNumbers(){
+  var num1, num2, num3;
+  num1 = Math.floor(Math.random()*10/5);
+  num2 = Math.floor(Math.random()*10/5);
+  num3 = Math.floor(Math.random()*10/5);
+  return [num1, num2, num3];
+}
+
+
+
 var UserInput, message, result;
 
 
@@ -24,22 +28,25 @@ var UserInput, message, result;
 UserInput = prompt("Do you have a coin? (y/n)");
 
 if(UserInput == "y"){
-  result = SlotMachine();
+  numbers = MakeRandomNumbers();
+  result = SlotMachine(numbers[0], numbers[1], numbers[2]);
   while(result != true){
-    message = "You lost! Want to try again?";
+    message = "Result: " + numbers[0] + numbers[1] + numbers[2] + "\nYou lost! Want to try again?";
     alert(message);
 
-    result = SlotMachine();
+    numbers = MakeRandomNumbers();
+    result = SlotMachine(numbers[0], numbers[1], numbers[2]);
   }
 
   if (result == true){
-    message = "Congratulations, you won a million smurf dollars!";
+    message = "Result: " + numbers[0] + numbers[1] + numbers[2] + "\nCongratulations, you won a million smurf dollars!";
     alert(message);
   }
 } 
 
 if(UserInput == "n"){
   message = "Alright, maybe some other time!";
+  alert(message);
 }
 
 </script>
